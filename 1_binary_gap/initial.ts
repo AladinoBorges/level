@@ -36,7 +36,7 @@ function convertToBinary(value: number): string {
   return (value >>> 0).toString(2);
 }
 
-function solution(N: number = null) {
+function binaryGap(N: number = null): number {
   const binaryValue = convertToBinary(N);
 
   if (binaryValue.length <= 2) {
@@ -79,16 +79,16 @@ function solution(N: number = null) {
   return occurrences.sort().pop();
 }
 
-console.log(solution(9));
-console.log(solution(529));
-console.log(solution(20));
-console.log(solution(15));
-console.log(solution(32));
+console.log(binaryGap(9));
+console.log(binaryGap(529));
+console.log(binaryGap(20));
+console.log(binaryGap(15));
+console.log(binaryGap(32));
 
-console.log(solution(6));
-console.log(solution(51712));
-console.log(solution(561892));
-console.log(solution(6291457));
-console.log(solution(805306373));
-console.log(solution(74901729));
-console.log(solution(1610612737));
+console.log(binaryGap(6));
+console.log(binaryGap(51712));
+console.log(binaryGap(561892));
+console.log(binaryGap(6291457));
+console.log(binaryGap(805306373));
+console.log(binaryGap(74901729));
+console.log(binaryGap(1610612737));
