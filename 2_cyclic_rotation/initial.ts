@@ -46,17 +46,13 @@ function cyclicRotation(A: number[], K: number): number[] {
     return A;
   }
 
-  const holder: { [key: number]: number } = {};
+  const results = [];
 
   for (let index = 0; index < listSize; index++) {
     const newPosition = (index + K) % listSize;
 
-    holder[newPosition] = A[index];
+    results[newPosition] = A[index];
   }
-
-  const results: number[] = Object.keys(holder)
-    .sort()
-    .map((key) => holder[Number(key)]);
 
   return results;
 }
