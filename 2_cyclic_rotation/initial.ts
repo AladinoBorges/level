@@ -46,7 +46,7 @@ function cyclicRotation(A: number[], K: number): number[] {
     return A;
   }
 
-  const holder = {};
+  const holder: { [key: number]: number } = {};
 
   for (let index = 0; index < listSize; index++) {
     let counter = index + K;
@@ -58,9 +58,9 @@ function cyclicRotation(A: number[], K: number): number[] {
     holder[counter] = A[index];
   }
 
-  const results = Object.keys(holder)
+  const results: number[] = Object.keys(holder)
     .sort()
-    .map((key) => holder[key]);
+    .map((key) => holder[Number(key)]);
 
   return results;
 }
