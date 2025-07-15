@@ -36,7 +36,7 @@ function convertToBinary(value: number): string {
   return (value >>> 0).toString(2);
 }
 
-function solution(N: number): number {
+function solution(N: number = null) {
   const binaryValue = convertToBinary(N);
 
   if (binaryValue.length <= 2) {
@@ -45,6 +45,7 @@ function solution(N: number): number {
 
   const occurrences: number[] = [];
   let index = null;
+  let currentCounter = 0;
 
   for (const value of binaryValue) {
     if (index === null && value === '1') {
@@ -54,12 +55,18 @@ function solution(N: number): number {
     }
 
     if (value === '1') {
+      if (currentCounter) {
+        occurrences.push(currentCounter);
+      }
+
       index += 1;
+      currentCounter = 0;
+
+      continue;
     }
 
     if (value === '0') {
-      const currentIndexValue = (occurrences[index] || 0) + 1;
-      occurrences[index] = currentIndexValue;
+      currentCounter += 1;
     }
   }
 
@@ -77,3 +84,11 @@ console.log(solution(529));
 console.log(solution(20));
 console.log(solution(15));
 console.log(solution(32));
+
+console.log(solution(6));
+console.log(solution(51712));
+console.log(solution(561892));
+console.log(solution(6291457));
+console.log(solution(805306373));
+console.log(solution(74901729));
+console.log(solution(1610612737));
