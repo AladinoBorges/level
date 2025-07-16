@@ -25,16 +25,38 @@
 */
 
 function permMissingElem(A: number[]): number {
+  let result = 1;
+
+  if (A.length <= result) {
+    const value = A[0] || 0;
+
+    return value > result ? value - result : value + result;
+  }
+
   const sortedArray = A.sort((a, b) => a - b);
 
   for (let index = 0; index < sortedArray.length; index++) {
-    const nextValidValue = sortedArray[index] + 1;
+    const nextValue = sortedArray[index + 1];
 
-    if (nextValidValue !== sortedArray[index + 1]) {
-      return nextValidValue;
+    const nextValidIsInvalid = nextValue - sortedArray[index] == 2;
+
+    if (nextValidIsInvalid) {
+      result = nextValue - 1;
+
+      break;
     }
   }
+
+  return result;
 }
 
+console.log(permMissingElem([])); // Output: 1
+console.log(permMissingElem([0])); // Output: 1
+console.log(permMissingElem([1])); // Output: 2
+console.log(permMissingElem([2])); // Output: 1
+console.log(permMissingElem([3])); // Output: 2
+console.log(permMissingElem([1, 3])); // Output: 2
 console.log(permMissingElem([2, 3, 1, 5])); // Output: 4
 console.log(permMissingElem([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12])); // Output: 11
+console.log(permMissingElem([7, 8, 9, 5, 10, 12])); // Output: 6
+console.log(permMissingElem([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])); // Output: 1
